@@ -1,0 +1,50 @@
+.status {
+  font-size: 4rem;
+}
+.status-card {
+  height: 300px;
+}
+.status-pane1 {
+  width: 58%;
+}
+.status-pane2 {
+  width: 38%;
+}
+
+.time-xl {
+  font-size: 3rem;
+}
+.time {
+  font-size: 1.75rem;
+}
+.time-name {
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  hr {
+    margin: .5rem 0 1rem;
+  }
+  .status {
+    font-size: 2rem;
+  }
+  .status-card {
+    height: fit-content;
+  }
+  .status-pane1 {
+    width: 100%;
+  }
+  .status-pane2 {
+    width: 100%;
+  }
+
+  .time-xl {
+    font-size: 1.5rem;
+  }
+  .time {
+    font-size: 1rem;
+  }
+  .time-name {
+    font-size: .6rem;
+  }
+}
