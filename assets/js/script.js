@@ -11,6 +11,15 @@ let nowCount = $('#now-count')[0] // 目前產量
 let averageSpeedRate = $('#average-speed-rate')[0] // 平均速率
 let timeLeft = $('#time-left')[0] // 剩餘時間
 
+var interval
+function start(){
+  interval = window.setInterval(() => {
+    readTextFile('./test.txt')
+  }, 100);  
+}
+
+start()
+
 function readTextFile (file) {
   var rawFile = new XMLHttpRequest()
   rawFile.open('GET', file, false)
@@ -18,7 +27,7 @@ function readTextFile (file) {
     if (rawFile.readyState === 4) {
       if (rawFile.status === 200 || rawFile.status == 0) {
         var allText = rawFile.responseText
-        console.log(allText)
+        // console.log(allText)
         setValue(allText)
       }
     }
@@ -26,7 +35,7 @@ function readTextFile (file) {
   rawFile.send(null)
 }
 
-readTextFile('./test.txt');
+// readTextFile('./test.txt');
 
 function setValue(data){
   nowStopTime.innerHTML = data
