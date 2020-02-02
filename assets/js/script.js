@@ -1,3 +1,4 @@
+let now = $('#now')[0]
 
 let nowStopTime = $('#now-stop-time')[0] // 現在停機時間
 let activeRate = $('#active-rate')[0] // 稼動率
@@ -15,6 +16,7 @@ var interval
 function start(){
   interval = window.setInterval(() => {
     readTextFile('./test.txt')
+    now.innerHTML = moment().format('YYYY-MM-DD HH:mm:ss')
   }, 100);  
 }
 
