@@ -1,16 +1,3 @@
-let now = $('#now')[0]
-
-let nowStopTime = $('#now-stop-time')[0] // 現在停機時間
-let activeRate = $('#active-rate')[0] // 稼動率
-let startUpTime = $('#start-up-time')[0] // 開機時間
-let produceStartTime = $('#produce-start-time')[0] // 開始生產時間
-let runTime = $('#run-time')[0] // 運轉
-let restTime = $('#rest-time')[0] // 休息
-let stopTime = $('#stop-time')[0] // 停機
-let targetCount = $('#target-count')[0] // 計畫產量
-let nowCount = $('#now-count')[0] // 目前產量
-let averageSpeedRate = $('#average-speed-rate')[0] // 平均速率
-let timeLeft = $('#time-left')[0] // 剩餘時間
 
 function readTextFile (file) {
   var rawFile = new XMLHttpRequest()
@@ -20,7 +7,7 @@ function readTextFile (file) {
       if (rawFile.status === 200 || rawFile.status == 0) {
         var allText = rawFile.responseText
         // console.log(allText)
-        setValue(allText)
+        formatData(allText)
       }
     }
   }
@@ -28,30 +15,47 @@ function readTextFile (file) {
 }
 
 // readTextFile('./test.txt');
+let format = {
+  nowStopTime: 0,
+  activeRate: 0,
+  startUpTime: 0,
+  produceStartTime: 0,
+  runTime: 0,
+  restTime: 0,
+  stopTime: 0,
+  targetCount: 0,
+  nowCount: 0,
+  averageSpeedRate: 0,
+  timeLeft: 0,
+  now: 0
+}
 
-function setValue(data){
-  nowStopTime.innerHTML = data
-  activeRate.innerHTML = data
-  startUpTime.innerHTML = data
-  produceStartTime.innerHTML = data
-  runTime.innerHTML = data
-  restTime.innerHTML = data
-  stopTime.innerHTML = data
-  targetCount.innerHTML = data
-  nowCount.innerHTML = data
-  averageSpeedRate.innerHTML = data
-  timeLeft.innerHTML = data
+function formatData(data){
+  let tmp = data.split(' ')
+  format = {
+    nowStopTime: tmp[0],
+    activeRate: tmp[1],
+    startUpTime: tmp[2],
+    produceStartTime: tmp[3],
+    runTime: tmp[4],
+    restTime: tmp[5],
+    stopTime: tmp[6],
+    targetCount: tmp[7],
+    nowCount: tmp[8],
+    averageSpeedRate: tmp[9],
+    timeLeft: tmp[10],
+    now: moment().format('YYYY-MM-DD HH:mm:ss')
+  }
 }
 
 
 // run get Data
 
-var interval
-function start(){
-  interval = window.setInterval(() => {
+var fileInterval
+function startGetFile(){
+  fileInterval = window.setInterval(() => {
     readTextFile('./test.txt')
-    now.innerHTML = moment().format('YYYY-MM-DD HH:mm:ss')
   }, 100);  
 }
 
-// start()
+startGetFile()
