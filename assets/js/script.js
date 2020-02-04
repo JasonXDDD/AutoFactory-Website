@@ -12,16 +12,6 @@ let nowCount = $('#now-count')[0] // 目前產量
 let averageSpeedRate = $('#average-speed-rate')[0] // 平均速率
 let timeLeft = $('#time-left')[0] // 剩餘時間
 
-var interval
-function start(){
-  interval = window.setInterval(() => {
-    readTextFile('./test.txt')
-    now.innerHTML = moment().format('YYYY-MM-DD HH:mm:ss')
-  }, 100);  
-}
-
-start()
-
 function readTextFile (file) {
   var rawFile = new XMLHttpRequest()
   rawFile.open('GET', file, false)
@@ -52,3 +42,16 @@ function setValue(data){
   averageSpeedRate.innerHTML = data
   timeLeft.innerHTML = data
 }
+
+
+// run get Data
+
+var interval
+function start(){
+  interval = window.setInterval(() => {
+    readTextFile('./test.txt')
+    now.innerHTML = moment().format('YYYY-MM-DD HH:mm:ss')
+  }, 100);  
+}
+
+// start()
